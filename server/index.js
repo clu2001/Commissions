@@ -4,21 +4,21 @@ var nodemailer = require('nodemailer');
 var cors = require('cors'); 
 const creds = require('./config'); 
 
-
 var transport = {
 
-    host: 'http://localhost:3000/', 
-    port: 587,
+    host: 'smtp.gmail.com', 
+    port: 465,
     auth: {
-        user: creds.USER,
-        pass: creds.PASS
+        user: "quckidon@gmail.com",
+        pass: "xarza6-pyqzax-vaJcah"
     }
 }
 
 var transporter = nodemailer.createTransport(transport)
 
 
-transport.verify((error, success) => {
+// verify SMTP connection is correct 
+transporter.verify((error, success) => {
     if (error) {
         console.log(error); 
     } else {
@@ -35,8 +35,32 @@ router.post('/send', (req, res, next) => {
     var mail = {
         from: name, 
         to: 'quckidon@gmail.com', 
-        
+        subject: 'New Message from Contact Form', 
+        text: content
     }
 
+    transporter.sendMail(mail, (err, data) => {
+        if (err) {
+            res.json({
+                status: 'fail'
+            })
+        } else {
+            res.json({
+                status: 'success'
+            })
+        }
 
+        transporter.sendMail({
+            from: "quckidon@gmail.com", 
+            to: email, 
+            subject: "Submission was successful!", 
+            text: `Thank you for your order!\n\n Form details\n Name: ${name}\n Email: ${email}\n Message: ${message}`
+        }, function(error, info) {
+            if (error) {
+                console.log(error); 
+            } else {
+                console.log('Message sent: ' + info.response); 
+            }
+        }); 
+        })
 })
