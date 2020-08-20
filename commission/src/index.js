@@ -4,12 +4,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker'; 
+import Routes from './router';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
           <div className="App">
-              <App />
+              
+              <Routes />
           </div>
     </Router>,
   </React.StrictMode>,

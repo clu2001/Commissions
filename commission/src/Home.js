@@ -1,4 +1,5 @@
 import React from "react"; 
+import HomeButton from "./homeButton";
 
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
         <div>
             <h1>
                 hi this is home page 
+                <HomeButton />
             </h1>
         </div>
     ); 
