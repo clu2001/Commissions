@@ -10,7 +10,6 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
           <div className="App">
-              
               <Routes />
           </div>
     </Router>,

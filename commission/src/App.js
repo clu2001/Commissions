@@ -5,6 +5,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Routes from './router'; 
 import HomeButton from './homeButton';
 import Home from './Home';
+import FormButton from './FormButton';
+import CommissionButton from './CommissionButton';
 
 function App() {
 
@@ -12,7 +14,6 @@ function App() {
     <div className="App">
       <h1>Hello I am app component</h1>
       <Routes />
-      <HomeButton />
     </div>
   ); 
 

@@ -1,5 +1,7 @@
 import React from "react"; 
 import HomeButton from "./homeButton";
+import CommissionButton from "./CommissionButton";
+import FormButton from "./FormButton";
 
 
 function Home() {
@@ -8,6 +10,8 @@ function Home() {
             <h1>
                 hi this is home page 
                 <HomeButton />
+                <CommissionButton />
+                <FormButton />
             </h1>
         </div>
     ); 

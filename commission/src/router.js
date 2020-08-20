@@ -4,6 +4,8 @@ import { Router, Switch, Route } from "react-router-dom";
 import history from "./history"; 
 import CommissionType from "./commissionType"; 
 import Home from "./Home"; 
+import FormPage from "./FormPage"
+import About from "./AboutPage";
 
 
 export default class Routes extends Component {
@@ -13,6 +15,8 @@ export default class Routes extends Component {
                 <Switch>
                     <Route path="/" exact component={Home} />
                     <Route path="/CommissionType" exact component={CommissionType} />
+                    <Route path="/FormPage" exact component={FormPage} />
+                    <Route path="/AboutPage" exact component={About} /> 
                 </Switch>
             </Router>
         ); 
