@@ -7,14 +7,15 @@ const env = require('dotenv').config();
 const creds = require('./config'); 
 const FormPage = require('./FormPage'); 
 
-const app = express(); 
+const app = express();
+
+// if someone else is hosting the server and they are NOT using server 
+// 3000, they can still run using their default port
+const PORT = process.env.PORT || 3000; 
 
 app.listen(PORT, () => {
     console.log("Listening to port: " + PORT); 
 }); 
-// if someone else is hosting the server and they are NOT using server 
-// 3000, they can still run using their default port
-const PORT = process.env.PORT || 3000; 
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
