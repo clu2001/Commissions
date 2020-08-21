@@ -1,21 +1,45 @@
-var express = require('express'); 
-var router = express.Router(); 
-var nodemailer = require('nodemailer'); 
-var cors = require('cors'); 
+const express = require('express'); 
+const bodyParser = require('body-parser'); 
+const router = express.Router(); 
+const nodemailer = require('nodemailer'); 
+const cors = require('cors'); 
+const env = require('dotenv').config(); 
 const creds = require('./config'); 
+const FormPage = require('./FormPage'); 
 
-var transport = {
+const app = express(); 
 
-    host: 'smtp.gmail.com', 
+app.listen(PORT, () => {
+    console.log("Listening to port: " + PORT); 
+}); 
+// if someone else is hosting the server and they are NOT using server 
+// 3000, they can still run using their default port
+const PORT = process.env.PORT || 3000; 
+
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors()); 
+
+app.use('/FormPage', FormPage); 
+
+app.get('/', (req, res) => {
+    res.send('Hello'); 
+    console.log('hi'); 
+}); 
+
+
+var transporter = nodemailer.createTransport({
+    // instantiate SMTP server 
+    service: 'gmail',  
     port: 465,
+    secure: true, 
     auth: {
-        user: "quckidon@gmail.com",
-        pass: "xarza6-pyqzax-vaJcah"
+        user: creds.USER,
+        pass: creds.PASS
     }
-}
-
-var transporter = nodemailer.createTransport(transport)
-
+})
 
 // verify SMTP connection is correct 
 transporter.verify((error, success) => {
@@ -26,11 +50,11 @@ transporter.verify((error, success) => {
     }
 }); 
 
-router.post('/send', (req, res, next) => {
+router.post('/FormPage', (req, res, next) => {
     var name = req.body.name
     var email = req.body.email
     var message = req.body.message
-    var content = `name: ${name} \n email: ${email} \n message: ${message}`
+    var content = `name: ${name} \n email: ${email} \n message: ${message} `
 
     var mail = {
         from: name, 
@@ -39,28 +63,31 @@ router.post('/send', (req, res, next) => {
         text: content
     }
 
-    transporter.sendMail(mail, (err, data) => {
-        if (err) {
-            res.json({
-                status: 'fail'
-            })
-        } else {
-            res.json({
-                status: 'success'
-            })
+// attempt to send the mail 
+transporter.sendMail(mail, (err, data) => {
+	if (err) {
+        res.json({
+        status: 'fail'
+  	    })
+	} else {
+        res.json({
+        status: 'success'
+          })
+    }
+     
+    // autoreply email 
+    transporter.sendMail({
+        from: "quckidon@gmail.com",
+        to: email,
+        subject: "Submission was successful",
+        text: `Thank you for contacting us!\n\nForm details\nName: ${name}\n Email: ${email}\n Message: ${message}`
+    }, function(error, info){
+        if(error) {
+            console.log(error);
+        } else{
+            console.log('Message sent: ' + info.response);
         }
+    });
+  }); 
+}) 
 
-        transporter.sendMail({
-            from: "quckidon@gmail.com", 
-            to: email, 
-            subject: "Submission was successful!", 
-            text: `Thank you for your order!\n\n Form details\n Name: ${name}\n Email: ${email}\n Message: ${message}`
-        }, function(error, info) {
-            if (error) {
-                console.log(error); 
-            } else {
-                console.log('Message sent: ' + info.response); 
-            }
-        }); 
-        })
-})

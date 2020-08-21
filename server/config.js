@@ -1,6 +1,6 @@
 
 
 module.exports = {
-    USER: 'EMAIL_ADDRESS', 
-    PASS: 'PASSWORD'
+    USER: 'quckidon@gmail.com', 
+    PASS: 'xarza6-pyqzax-vaJcah'
 }
