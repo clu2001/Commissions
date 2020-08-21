@@ -11,10 +11,18 @@ const app = express();
 // 3000, they can still run using their default port
 const PORT = process.env.PORT || 3000; 
 
-app.get('/', (req, res) => {
-    console.log('home page'); 
-}); 
+// support parsing of application/json type post data
+app.use(bodyParser.json());
+//support parsing of application/x-www-form-urlencoded post data
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors()); 
+
+app.get('/FormPage', (req, res) => {
+    res.send('You are at the form page now lol')
+    console.log('form page'); 
+});
 
 app.listen(PORT, () => {
     console.log("Listening to port: " + PORT); 
 })
+

@@ -5,7 +5,6 @@ const nodemailer = require('nodemailer');
 const cors = require('cors'); 
 const env = require('dotenv').config(); 
 const creds = require('./config'); 
-const FormPage = require('./FormPage'); 
 
 const app = express();
 
@@ -22,14 +21,6 @@ app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors()); 
-
-app.use('/FormPage', FormPage); 
-
-app.get('/', (req, res) => {
-    res.send('Hello'); 
-    console.log('hi'); 
-}); 
-
 
 var transporter = nodemailer.createTransport({
     // instantiate SMTP server 
@@ -51,7 +42,7 @@ transporter.verify((error, success) => {
     }
 }); 
 
-router.post('/FormPage', (req, res, next) => {
+app.post('/FormPage', (req, res, next) => {
     var name = req.body.name
     var email = req.body.email
     var message = req.body.message
