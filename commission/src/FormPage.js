@@ -12,26 +12,42 @@ class FormPage extends React.Component {
         }
       }
 
-    handleSubmit(e){
-    e.preventDefault();
-    axios({
-        method: "POST", 
-        url:"http://localhost:3002/FormPage", 
-        data:  this.state
-    }).then((response)=>{
-        if (response.data.status === 'success'){
-        alert("Message Sent."); 
-        this.resetForm()
-        }else if(response.data.status === 'fail'){
-        alert("Message failed to send.")
-        }
-    })
+    onNameChange(event) {
+    this.setState({name: event.target.value})
     }
 
-    resetForm(){
-        this.setState({name: '', email: '', message: ''})
-     }
+    onEmailChange(event) {
+    this.setState({email: event.target.value})
+    }
 
+    onMessageChange(event) {
+    this.setState({message: event.target.value})
+    }
+
+    submitEmail(e) {
+        e.preventDefault();
+
+        axios({
+            method: "POST", 
+            url:"/FormPage", 
+            data:  this.state
+
+        }).then((response)=>{
+
+            if (response.data.status === 'success'){
+                alert("Message Sent."); 
+                this.resetForm()
+            } else if(response.data.status === 'fail'){
+                alert("Message failed to send.")
+            }
+        })
+    }
+
+    resetForm() {
+        this.setState({name: '', email: '', message: ''})
+    }
+
+    // form layout itself 
     render() {
         return(
             <div className="EmailForm">
@@ -59,17 +75,6 @@ class FormPage extends React.Component {
         );
 
     }
-    onNameChange(event) {
-        this.setState({name: event.target.value})
-      }
-    
-      onEmailChange(event) {
-        this.setState({email: event.target.value})
-      }
-    
-      onMessageChange(event) {
-        this.setState({message: event.target.value})
-      }
     
     handleSubmit(event) {
     }

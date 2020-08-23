@@ -42,17 +42,18 @@ transporter.verify((error, success) => {
     }
 }); 
 
-app.post('/FormPage', (req, res, next) => {
+app.post('/FormPage', (req, res) => {
+
     var name = req.body.name
     var email = req.body.email
     var message = req.body.message
-    var content = `name: ${name} \n email: ${email} \n message: ${message} `
+    var content = `Name: ${name}\nEmail: ${email}\nMessage: ${message} `
 
     var mail = {
-        from: name, 
+        from: `${name}`, 
         to: 'quckidon@gmail.com', 
-        subject: 'New Message from Contact Form', 
-        text: content
+        subject: 'new message yo', 
+        text: `${message}`
     }
 
 // attempt to send the mail 
