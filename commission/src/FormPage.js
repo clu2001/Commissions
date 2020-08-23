@@ -10,21 +10,10 @@ class FormPage extends React.Component {
           email: '',
           message: ''
         }
-      }
-
-    onNameChange(event) {
-    this.setState({name: event.target.value})
     }
 
-    onEmailChange(event) {
-    this.setState({email: event.target.value})
-    }
-
-    onMessageChange(event) {
-    this.setState({message: event.target.value})
-    }
-
-    submitEmail(e) {
+    handleSubmit(e) {
+        
         e.preventDefault();
 
         axios({
@@ -76,7 +65,16 @@ class FormPage extends React.Component {
 
     }
     
-    handleSubmit(event) {
+    onNameChange(event) {
+        this.setState({name: event.target.value})
+    }
+    
+    onEmailChange(event) {
+        this.setState({email: event.target.value})
+    }
+
+    onMessageChange(event) {
+        this.setState({message: event.target.value})
     }
 }
 

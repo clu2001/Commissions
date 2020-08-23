@@ -6,26 +6,21 @@ const cors = require('cors');
 const env = require('dotenv').config(); 
 const creds = require('./config'); 
 const { response } = require('express');
-
-
 const app = express();
 
 // if someone else is hosting the server and they are NOT using server 
 // 3000, they can still run using their default port
 const PORT = process.env.PORT || 3000; 
 
-app.listen(PORT, () => {
-    console.log("Listening to port: " + PORT); 
-}); 
-
+app.use(cors());
+app.use(express.json());
 // support parsing of application/json type post data
 app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-
-app.get('/', (req, res) => {
-    res.send('/'); 
+app.use(bodyParser.urlencoded({ extended: false })); 
+app.use('/', router);
+app.listen(PORT, () => {
+    console.log("Listening to port: " + PORT); 
 }); 
 
 var transporter = nodemailer.createTransport({
@@ -55,11 +50,13 @@ app.post('/FormPage', (req, res) => {
     var message = req.body.message
     var content = `Name: ${name}\nEmail: ${email}\nMessage: ${message} `
 
+    console.log(req.body); 
+
     var mail = {
-        from: `${name}`, 
+        from: name, 
         to: 'quckidon@gmail.com', 
-        subject: 'new message yo', 
-        text: `${message}`
+        subject: 'Commission Request', 
+        text: content
     }
 
 // attempt to send the mail 
@@ -72,24 +69,26 @@ transporter.sendMail(mail, (err, data) => {
 	} else {
         res.json({
         status: 'success'
-          })
+        })
     }
-     
-    // autoreply email 
-    transporter.sendMail({
-        
-        from: "quckidon@gmail.com",
-        to: email,
-        subject: "Submission was successful",
-        text: `Thank you for contacting us!\n\nForm details\nName: ${name}\n Email: ${email}\n Message: ${message}`
-    
-    }, function(error, info){
-        if(error) {
-            console.log(error);
-        } else{
-            console.log('Message sent: ' + info.response);
-        }
-    });
   }); 
-}) 
+
+  // autoreply email 
+  transporter.sendMail({
+        
+    from: "quckidon@gmail.com",
+    to: `${email}`,
+    subject: "Submission was successful",
+    text: `Thank you for contacting us!\n\nForm details\nName: ${name}\n Email: ${email}\n Message: ${message}`
+
+}, function(error, info){
+    if(error) {
+        console.log(error);
+        console.log('HIIIIIIIIII')
+    } else{
+        console.log('Message sent: ' + info.response);
+    }
+});
+
+});  
 
