@@ -29,7 +29,7 @@ class FormPage extends React.Component {
 
         axios({
             method: "POST", 
-            url:"/FormPage", 
+            url:"http://localhost:3002/FormPage", 
             data:  this.state
 
         }).then((response)=>{

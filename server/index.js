@@ -5,6 +5,8 @@ const nodemailer = require('nodemailer');
 const cors = require('cors'); 
 const env = require('dotenv').config(); 
 const creds = require('./config'); 
+const { response } = require('express');
+
 
 const app = express();
 
@@ -20,12 +22,16 @@ app.listen(PORT, () => {
 app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors()); 
+app.use(cors());
+
+app.get('/', (req, res) => {
+    res.send('/'); 
+}); 
 
 var transporter = nodemailer.createTransport({
     // instantiate SMTP server 
     service: 'gmail',  
-    port: 465,
+    port: 587,
     secure: true, 
     auth: {
         user: creds.USER,
@@ -58,7 +64,8 @@ app.post('/FormPage', (req, res) => {
 
 // attempt to send the mail 
 transporter.sendMail(mail, (err, data) => {
-	if (err) {
+    
+    if (err) {
         res.json({
         status: 'fail'
   	    })
@@ -70,10 +77,12 @@ transporter.sendMail(mail, (err, data) => {
      
     // autoreply email 
     transporter.sendMail({
+        
         from: "quckidon@gmail.com",
         to: email,
         subject: "Submission was successful",
         text: `Thank you for contacting us!\n\nForm details\nName: ${name}\n Email: ${email}\n Message: ${message}`
+    
     }, function(error, info){
         if(error) {
             console.log(error);
