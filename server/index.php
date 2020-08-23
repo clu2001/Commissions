@@ -8,6 +8,7 @@ $_POST = json_decode($rest_json, true);
 
 $errors = array();
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
   if (empty($_POST['email'])) {
     $errors[] = 'Email is empty';
   } else {
@@ -18,11 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $errors[] = 'Invalid email';
     }
   }
+
   if (empty($_POST['message'])) {
     $errors[] = 'Message is empty';
   } else {
     $message = $_POST['message'];
   }
+
   if (empty($errors)) {
     $date = date('j, F Y h:i A');
     
@@ -43,12 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     </html>
     ";
     
-    $headers = 	'From: Contact Form <contact@mydomain.com>' . "\r\n" .
+    $headers = 	'From: Quckidon Commissions' . "\r\n" .
     "Reply-To: $email" . "\r\n" .
     "MIME-Version: 1.0\r\n" . 
     "Content-Type: text/html; charset=iso-8859-1\r\n";
 
-    $to = 'quckidon@gmail.com';
+    $to = 'quckidon@outlook.com';
     $subject = 'Commission Request';
     
     if (mail($to, $subject, $emailBody, $headers)) {
@@ -74,3 +77,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
   "message": "Your data was successfully submitted"
 }
   <?php endif; ?>
+  
+<?php
+$email_subject = "Submission was successful!";
+$email_message = "Form details\n\n";
+$email_message .= "Name: ".$name."\n\n";
+$email_message .= "Email: ".$email."\n\n";
+$email_message .= "Message: ".$message."\n\n";
+
+// create email headers
+
+$headers = 'From: '.$to."\r\n".
+'Reply-To: '.$to."\r\n" .
+"MIME-Version: 1.0\r\n" .
+"Content-Type: text/plain; charset=iso-8859-1\r\n";
+
+mail($email, $email_subject, $email_message, $headers);
