@@ -7,7 +7,7 @@ export default class HomeButton extends Component {
       return (
         <div className="HomeButton">
           <div className="lander">
-            <h1>Home page</h1>
+            <h1>About page</h1>
             <form>
               <button variant="btn btn-success" onClick={() => history.push('/AboutPage')}>About</button>
             </form>

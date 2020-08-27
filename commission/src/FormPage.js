@@ -41,11 +41,6 @@ class FormPage extends React.Component {
         return(
             <div className="EmailForm">
             <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
-            
-            <div className="form-group">
-                <label htmlFor="name">Contact name</label>
-                <input type="text" className="form-control" value={this.state.name} onChange={this.onNameChange.bind(this)} />
-            </div>
          
             <div className="form-group">
                 <label htmlFor="exampleInputEmail1">Email address</label>

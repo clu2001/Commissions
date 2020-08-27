@@ -9,7 +9,7 @@ export default class CommissionButton extends Component {
           <div className="lander">
             <h1>Commission Page</h1>
             <form>
-              <button variant="btn btn-success" onClick={() => history.push('/CommissionType')}>Form</button>
+              <button variant="btn btn-success" onClick={() => history.push('/CommissionType')}>Commission Types</button>
             </form>
           </div>
         </div>
