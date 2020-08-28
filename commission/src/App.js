@@ -5,8 +5,10 @@ import classNames from "classnames";
 function App() {
 
   const Cursor = () => {
+
     const [position, setPosition] = useState({x:0, y:0}); 
-    const [hidden, setHidden] = useState(false); 
+    const [hidden, setHidden] = useState(false);
+    const [clicked, setClicked] = useState(false);  
 
     useEffect(() => {
       addEventListeners(); 
@@ -15,14 +17,22 @@ function App() {
 
     const addEventListeners = () => {
       document.addEventListener("mousemove", onmousemove); 
+
       document.addEventListener("mouseenter", onmouseenter); 
       document.addEventListener("mouseleave", onmouseleave); 
+
+      document.addEventListener("mousedown", onmousedown); 
+      document.addEventListener("mouseup", onmouseup); 
     }; 
 
     const removeEventListeners = () => {
       document.removeEventListener("mousemove", onmousemove);
+
       document.addEventListener("mouseenter", onmouseenter); 
       document.addEventListener("mouseleave", onmouseleave); 
+
+      document.addEventListener("mousedown", onmousedown); 
+      document.addEventListener("mouseup", onmouseup); 
     }; 
 
     const onmousemove = (e) => {
@@ -37,9 +47,18 @@ function App() {
       setHidden(true); 
     }
 
+    const onmousedown = () => {
+      setClicked(true); 
+    }; 
+
+    const onmouseup = () => {
+      setClicked(false); 
+    }; 
+
     const cursorClasses = classNames(
       'cursor',
       {
+        'cursor--clicked': clicked, 
         'cursor--hidden': hidden
       }
     )
