@@ -5,17 +5,12 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker'; 
 import './Layout/App.css'; 
-import Cursor from "./Cursor/cursor.js"; 
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
           <div className="App">
               <App />
-          </div>
-
-          <div className="Cursor">
-              <Cursor />
           </div>
     </Router>,
   </React.StrictMode>,
