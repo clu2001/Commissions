@@ -34,10 +34,9 @@ const Cursor = () => {
 
     const handleButtonHoverEvents = () => {
         document.querySelectorAll("button").forEach(el => {
-        el.addEventListener("mouseover", () => setButtonHovered(true)); 
-        el.addEventListener("mouseout", () => setButtonHovered(false)); 
-        el.addEventListener("mouseup", () => setButtonHovered(false)); 
-        }); 
+        el.addEventListener("mouseover", () => setButtonHovered(true));
+        el.addEventListener("mouseout", () => setButtonHovered(false));
+        });  
     }; 
 
     const addEventListeners = () => {

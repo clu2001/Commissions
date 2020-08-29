@@ -13,9 +13,6 @@ ReactDOM.render(
           <div className="App">
               <App />
           </div>
-          <div> 
-            <Cursor />
-          </div>
     </Router>,
   </React.StrictMode>,
   document.getElementById('root')

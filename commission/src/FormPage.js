@@ -1,5 +1,6 @@
 import React from "react"; 
 import axios from "axios"; 
+import Cursor from "./Cursor/cursor"; 
 
 
 class FormPage extends React.Component {
@@ -39,22 +40,25 @@ class FormPage extends React.Component {
     // form layout itself 
     render() {
         return(
-            <div className="EmailForm">
-            <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
-         
-            <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)} />
-            </div>
+            <div>
+                <Cursor />
+                <div className="EmailForm">
+                <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
             
-            <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
-            </div>
-            
-            <button type="submit" className="btn btn-primary">Submit</button>
-            
-            </form>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input type="email" className="form-control" aria-describedby="emailHelp" value={this.state.email} onChange={this.onEmailChange.bind(this)} />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="message">Message</label>
+                    <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
+                </div>
+                
+                <button type="submit" className="btn btn-primary">Submit</button>
+                
+                </form>
+                </div>
             </div>
         );
 
