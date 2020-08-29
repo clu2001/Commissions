@@ -10,7 +10,7 @@ function Home() {
         <div>
             <h1 className={Styles.bigblue}>
                 hi this is home page 
-                <a href="https://dev.to/andrewchmr/awesome-animated-cursor-with-react-hooks-5ec3">This is a link</a>
+                <a href="https://reactjs.org/docs/handling-events.html">Hi this is a link</a>
                 <HomeButton />
                 <CommissionButton />
                 <FormButton />

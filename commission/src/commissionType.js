@@ -1,4 +1,5 @@
 import React from "react"; 
+import Cursor from "./Cursor/cursor.js"; 
 
 
 function CommissionType() {
@@ -7,6 +8,7 @@ function CommissionType() {
             <h1>
                 hi this is commissions page 
             </h1>
+            <Cursor />
         </div>
     ); 
 }

@@ -1,7 +1,7 @@
 .cursor {
   width: 40px;
   height: 40px; 
-  border: 2px solid #fefefe; 
+  border: 2px solid rgb(157, 14, 14); 
   border-radius: 100%;
   position: fixed; 
   transform: translate(-50%, -50%);
@@ -18,22 +18,33 @@
 
 .cursor--clicked {
   transform: translate(-50%, -50%) scale(0.9); 
-  background-color: #fefefe;
+  background-color: rgb(157, 14, 14);
 }
 
 .cursor--link-hovered {
   transform: translate(-50%, -50%) scale(1.25); 
-  background-color: #fefefe;
+  background-color: rgb(157, 14, 14);
+}
+
+.cursor--button-hovered {
+  cursor: none; 
+  transform: translate(-50%, -50%) scale(1.25); 
+  background-color: rgb(157, 14, 14);
 }
 
 a {
+  cursor: none;
   text-decoration: underline;
   color: #fefefe; 
 }
 
-body {
+html, body {
   cursor: none; 
   background-color: #121212;
+}
+
+button {
+  cursor: none; 
 }
 
 
