@@ -1,6 +1,6 @@
 import React from "react"; 
 import axios from "axios"; 
-import Cursor from "./Cursor/cursor"; 
+import Cursor from "./Cursor/cursor";
 
 
 class FormPage extends React.Component {

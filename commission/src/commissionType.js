@@ -1,5 +1,5 @@
 import React from "react"; 
-import Cursor from "./Cursor/cursor.js"; 
+import Cursor from "./Cursor/cursor";
 
 
 function CommissionType() {

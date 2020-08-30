@@ -7,10 +7,9 @@ const Mobile = () => {
     return /Android|Mobi/i.test(ua);
 }; 
 
-
 const Cursor = () => {
 
-    const [position, setPosition] = useState({x:0, y:0}); 
+    const [position, setPosition] = useState({x:0, y:0});
     const [hidden, setHidden] = useState(false);
     const [clicked, setClicked] = useState(false);  
     const [linkHovered, setLinkHovered] = useState(false); 
@@ -18,7 +17,7 @@ const Cursor = () => {
 
     useEffect(() => {
         addEventListeners(); 
-        handleLinkHoverEvents(); 
+        handleLinkHoverEvents();
         handleButtonHoverEvents(); 
         return () => removeEventListeners(); 
     }, []); 
@@ -27,17 +26,17 @@ const Cursor = () => {
 
     const handleLinkHoverEvents = () => {
         document.querySelectorAll("a").forEach(el => {
-        el.addEventListener("mouseover", () => setLinkHovered(true)); 
-        el.addEventListener("mouseout", () => setLinkHovered(false)); 
+            el.addEventListener("mouseover", () => setLinkHovered(true)); 
+            el.addEventListener("mouseout", () => setLinkHovered(false)); 
         }); 
     };
 
     const handleButtonHoverEvents = () => {
         document.querySelectorAll("button").forEach(el => {
-        el.addEventListener("mouseover", () => setButtonHovered(true));
-        el.addEventListener("mouseout", () => setButtonHovered(false));
-        });  
-    }; 
+            el.addEventListener("mouseover", () => setButtonHovered(true)); 
+            el.addEventListener("mouseout", () => setButtonHovered(false)); 
+        }); 
+    };
 
     const addEventListeners = () => {
         document.addEventListener("mousemove", onmousemove); 
@@ -56,7 +55,7 @@ const Cursor = () => {
         document.addEventListener("mouseleave", onmouseleave); 
 
         document.addEventListener("mousedown", onmousedown); 
-        document.addEventListener("mouseup", onmouseup); 
+        document.addEventListener("mouseup", onmouseup);
     }; 
 
     const onmousemove = (e) => {
@@ -80,12 +79,13 @@ const Cursor = () => {
     }; 
 
     const cursorClasses = classNames(
+
         'cursor',
         {
-        'cursor--clicked': clicked, 
-        'cursor--hidden': hidden, 
-        'cursor--link-hovered': linkHovered, 
-        'cursor--button-hovered': buttonHovered
+            'cursor--clicked': clicked,
+            'cursor--hidden': hidden, 
+            'cursor--link-hovered': linkHovered, 
+            'cursor--button-hovered': buttonHovered
         }
     )
 
