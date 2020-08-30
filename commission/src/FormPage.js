@@ -1,6 +1,7 @@
 import React from "react"; 
 import axios from "axios"; 
 import Cursor from "./Cursor/cursor";
+import "./Layout/App.css"
 
 
 class FormPage extends React.Component {
@@ -55,7 +56,7 @@ class FormPage extends React.Component {
                     <textarea className="form-control" rows="5" value={this.state.message} onChange={this.onMessageChange.bind(this)} />
                 </div>
                 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button class="button" type="submit" className="btn btn-primary">Submit</button>
                 
                 </form>
                 </div>
