@@ -7,9 +7,8 @@ export default class FormButton extends Component {
       return (
         <div className="FormButton">
           <div className="lander">
-            <h1>Form page</h1>
             <form>
-              <button class="button" variant="btn btn-success" onClick={() => history.push('/FormPage')}>Order Commission</button>
+              <button class="button" variant="btn btn-success" onClick={() => history.push('/FormPage')}>Send me a message!</button>
             </form>
           </div>
         </div>

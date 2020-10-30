@@ -7,7 +7,7 @@ function CommissionType() {
         <div>
             <Cursor />
             <h1>
-                hi this is commissions page 
+                Welcome to my gallery!
             </h1>
         </div>
     ); 
